@@ -1,4 +1,5 @@
 import { Cell } from 'src/app/commonTypes/Cell'
+import { cellIsOwnedByPlayer } from 'src/app/utils/cells/cellIsOwnedByPlayer'
 import { getCellByCoords } from 'src/app/utils/cells/getCellByCoords'
 
 export function diagonalWinCheck(
@@ -13,7 +14,7 @@ export function diagonalWinCheck(
   const cellX: number = cells[cell].x
   const cellY: number = cells[cell].y
   let forwardTickedCells: Coordinates[] = [[cellX, cellY]]
-  let backwardTickedCellsOther: Coordinates[] = [[cellX, cellY]]
+  let backwardTickedCells: Coordinates[] = [[cellX, cellY]]
   let tempX: number
   let tempY: number
   let adjacentCell: Cell
@@ -30,7 +31,7 @@ export function diagonalWinCheck(
     tempY--
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (adjacentCell.ticked && adjacentCell.owner == player)
+    if (cellIsOwnedByPlayer(adjacentCell, player))
       forwardTickedCells.push([tempX, tempY])
   }
 
@@ -44,7 +45,7 @@ export function diagonalWinCheck(
     tempY++
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (adjacentCell.ticked && adjacentCell.owner == player)
+    if (cellIsOwnedByPlayer(adjacentCell, player))
       forwardTickedCells.push([tempX, tempY])
   }
 
@@ -61,8 +62,8 @@ export function diagonalWinCheck(
     tempY--
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (adjacentCell.ticked && adjacentCell.owner == player)
-      backwardTickedCellsOther.push([tempX, tempY])
+    if (cellIsOwnedByPlayer(adjacentCell, player))
+      backwardTickedCells.push([tempX, tempY])
   }
 
   // Check toward right and down ( \ ) (2/2)
@@ -75,11 +76,11 @@ export function diagonalWinCheck(
     tempY++
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (adjacentCell.ticked && adjacentCell.owner == player)
-      backwardTickedCellsOther.push([tempX, tempY])
+    if (cellIsOwnedByPlayer(adjacentCell, player))
+      backwardTickedCells.push([tempX, tempY])
   }
 
-  if (backwardTickedCellsOther.length === columns) return true
+  if (backwardTickedCells.length === columns) return true
 
   return false
 }

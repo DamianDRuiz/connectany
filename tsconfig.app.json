@@ -17,7 +17,8 @@
     "src/app/utils/gameControl/isNewGame.tsx",
     "src/app/utils/gameControl/checkForWin.tsx",
     "src/app/commonTypes/Cell.tsx",
-    "src/app/constants.tsx"
+    "src/app/constants.tsx",
+    "src/app/utils/cells/cellIsOwnedByPlayer.tsx"
   ],
   "exclude": [
     "src/**/*.spec.ts",
