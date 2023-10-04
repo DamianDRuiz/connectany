@@ -16,7 +16,7 @@ export function diagonalWinCheck(
   let backwardTickedCellsOther: Coordinates[] = [[cellX, cellY]]
   let tempX: number
   let tempY: number
-  let tempCell: Cell
+  let adjacentCell: Cell
 
   //Check forward slash shaped diagonal ( / ) (2 Parts)
 
@@ -28,9 +28,9 @@ export function diagonalWinCheck(
   while (tempX < columns && tempY > 1) {
     tempX++
     tempY--
-    tempCell = getCellByCoords(tempX, tempY, cells)
+    adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (tempCell.ticked && tempCell.owner == player)
+    if (adjacentCell.ticked && adjacentCell.owner == player)
       forwardTickedCells.push([tempX, tempY])
   }
 
@@ -42,9 +42,9 @@ export function diagonalWinCheck(
   while (tempX > 1 && tempY < rows) {
     tempX--
     tempY++
-    tempCell = getCellByCoords(tempX, tempY, cells)
+    adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (tempCell.ticked && tempCell.owner == player)
+    if (adjacentCell.ticked && adjacentCell.owner == player)
       forwardTickedCells.push([tempX, tempY])
   }
 
@@ -59,9 +59,9 @@ export function diagonalWinCheck(
   while (tempX > 1 && tempY > 1) {
     tempX--
     tempY--
-    tempCell = getCellByCoords(tempX, tempY, cells)
+    adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (tempCell.ticked && tempCell.owner == player)
+    if (adjacentCell.ticked && adjacentCell.owner == player)
       backwardTickedCellsOther.push([tempX, tempY])
   }
 
@@ -73,9 +73,9 @@ export function diagonalWinCheck(
   while (tempX < columns && tempY < rows) {
     tempX++
     tempY++
-    tempCell = getCellByCoords(tempX, tempY, cells)
+    adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (tempCell.ticked && tempCell.owner == player)
+    if (adjacentCell.ticked && adjacentCell.owner == player)
       backwardTickedCellsOther.push([tempX, tempY])
   }
 
