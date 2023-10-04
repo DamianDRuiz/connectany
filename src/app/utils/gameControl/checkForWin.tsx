@@ -13,8 +13,8 @@ export function checkForWin(
   const currentPlayerString = `Player ${currentPlayer}`
 
   if (straightWinCheck(latestCellClicked, cells, columns, rows, currentPlayer))
-    winGame('straight', currentPlayerString)
+    winGame('Straight', currentPlayerString)
 
   if (diagonalWinCheck(latestCellClicked, cells, rows, columns, currentPlayer))
-    winGame('diag forward', currentPlayerString)
+    winGame('Diagonal', currentPlayerString)
 }

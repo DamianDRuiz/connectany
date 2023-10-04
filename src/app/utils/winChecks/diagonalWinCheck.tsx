@@ -9,50 +9,80 @@ export function diagonalWinCheck(
   player: number
 ) {
   if (cell == null) return
-  const cellColumn = cells[cell].x
-  const cellRow = cells[cell].y
-  const tickedCells = []
-  tickedCells.push([cellColumn, cellRow])
 
-  //lets check upwards toward left
-  let tempColumn = cellColumn
-  let tempRow = cellRow
+  const cellX = cells[cell].x
+  const cellY = cells[cell].y
+  let forwardTickedCells = [[cellX, cellY]]
+  let backwardTickedCellsOther = [[cellX, cellY]]
+  let tempX
+  let tempY
 
-  if (cellColumn > 1 && cellRow > 1) {
-    for (let i = cellColumn; i > 1; i--) {
-      const cords: number[] = []
+  //Check forward slash shaped diagonal ( / ) (2 Parts)
 
-      tempColumn--
-      tempRow--
-      cords[0] = tempColumn
-      cords[1] = tempRow
+  // Check toward right and up ( / ) (1/2)
 
-      let tempCell: Cell = getCellByCoords(cords[0], cords[1], cells)
+  tempX = cellX
+  tempY = cellY
 
-      if (tempCell.ticked && tempCell.owner == player) tickedCells.push(cords)
-    }
+  while (tempX < columns && tempY > 1) {
+    let tempCell: Cell
+    tempX++
+    tempY--
+    tempCell = getCellByCoords(tempX, tempY, cells)
+
+    if (tempCell.ticked && tempCell.owner == player)
+      forwardTickedCells.push([tempX, tempY])
   }
 
-  //lets check downwards toward right
-  tempColumn = cellColumn
-  tempRow = cellRow
+  // Check toward left and down ( / ) (2/2)
 
-  if (cellColumn < columns && cellRow < rows) {
-    for (let i = cellColumn; i < rows; i++) {
-      const cords: number[] = []
+  tempX = cellX
+  tempY = cellY
 
-      tempColumn++
-      tempRow++
-      cords[0] = tempColumn
-      cords[1] = tempRow
+  while (tempX > 1 && tempY < rows) {
+    let tempCell: Cell
+    tempX--
+    tempY++
+    tempCell = getCellByCoords(tempX, tempY, cells)
 
-      let tempCell: Cell = getCellByCoords(cords[0], cords[1], cells)
-
-      if (tempCell.ticked && tempCell.owner == player) tickedCells.push(cords)
-    }
+    if (tempCell.ticked && tempCell.owner == player)
+      forwardTickedCells.push([tempX, tempY])
   }
 
-  if (tickedCells.length === columns) return true
+  if (forwardTickedCells.length == columns) return true
+
+  // Check backward slash shaped diagonal ( \ ) (2 Parts)
+  // Check toward left and up ( \ ) (1/2)
+
+  tempX = cellX
+  tempY = cellY
+
+  while (tempX > 1 && tempY > 1) {
+    let tempCell: Cell
+    tempX--
+    tempY--
+    tempCell = getCellByCoords(tempX, tempY, cells)
+
+    if (tempCell.ticked && tempCell.owner == player)
+      backwardTickedCellsOther.push([tempX, tempY])
+  }
+
+  // Check toward right and down ( \ ) (2/2)
+
+  tempX = cellX
+  tempY = cellY
+
+  while (tempX < columns && tempY < rows) {
+    let tempCell: Cell
+    tempX++
+    tempY++
+    tempCell = getCellByCoords(tempX, tempY, cells)
+
+    if (tempCell.ticked && tempCell.owner == player)
+      backwardTickedCellsOther.push([tempX, tempY])
+  }
+
+  if (backwardTickedCellsOther.length === columns) return true
 
   return false
 }
