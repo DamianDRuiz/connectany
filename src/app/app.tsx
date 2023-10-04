@@ -1,9 +1,12 @@
 import GameGrid from 'src/app/components/GameGrid/GameGrid'
-import { DEFAULT_COLUMN_COUNT } from 'src/app/constants'
 import { useCells } from 'src/app/hooks/useCells/useCells'
 
 export function App() {
-  const { currentPlayer, cells, handleCellClick } = useCells()
+  const rowAndColumnCount = 4
+  const { currentPlayer, cells, handleCellClick } = useCells(
+    rowAndColumnCount,
+    rowAndColumnCount
+  )
 
   return (
     <>
@@ -23,7 +26,7 @@ export function App() {
 
       <GameGrid
         cells={cells}
-        columnCount={DEFAULT_COLUMN_COUNT}
+        columnCount={rowAndColumnCount}
         handleCellClick={handleCellClick}
       />
       <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>
