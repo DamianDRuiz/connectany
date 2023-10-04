@@ -10,12 +10,13 @@ export function diagonalWinCheck(
 ) {
   if (cell == null) return
 
-  const cellX = cells[cell].x
-  const cellY = cells[cell].y
-  let forwardTickedCells = [[cellX, cellY]]
-  let backwardTickedCellsOther = [[cellX, cellY]]
-  let tempX
-  let tempY
+  const cellX: number = cells[cell].x
+  const cellY: number = cells[cell].y
+  let forwardTickedCells: Coordinates[] = [[cellX, cellY]]
+  let backwardTickedCellsOther: Coordinates[] = [[cellX, cellY]]
+  let tempX: number
+  let tempY: number
+  let tempCell: Cell
 
   //Check forward slash shaped diagonal ( / ) (2 Parts)
 
@@ -25,7 +26,6 @@ export function diagonalWinCheck(
   tempY = cellY
 
   while (tempX < columns && tempY > 1) {
-    let tempCell: Cell
     tempX++
     tempY--
     tempCell = getCellByCoords(tempX, tempY, cells)
@@ -40,7 +40,6 @@ export function diagonalWinCheck(
   tempY = cellY
 
   while (tempX > 1 && tempY < rows) {
-    let tempCell: Cell
     tempX--
     tempY++
     tempCell = getCellByCoords(tempX, tempY, cells)
@@ -58,7 +57,6 @@ export function diagonalWinCheck(
   tempY = cellY
 
   while (tempX > 1 && tempY > 1) {
-    let tempCell: Cell
     tempX--
     tempY--
     tempCell = getCellByCoords(tempX, tempY, cells)
@@ -73,7 +71,6 @@ export function diagonalWinCheck(
   tempY = cellY
 
   while (tempX < columns && tempY < rows) {
-    let tempCell: Cell
     tempX++
     tempY++
     tempCell = getCellByCoords(tempX, tempY, cells)
@@ -86,3 +83,5 @@ export function diagonalWinCheck(
 
   return false
 }
+
+type Coordinates = [number, number]
