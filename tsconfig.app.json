@@ -1,0 +1,33 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "types": ["node", "vite/client"]
+  },
+  "files": [
+    "./node_modules/@nrwl/react/typings/styled-jsx.d.ts",
+    "./node_modules/@nrwl/react/typings/cssmodule.d.ts",
+    "./node_modules/@nrwl/react/typings/image.d.ts",
+    "./src/app/utils/cells/buildGridCells.tsx",
+    "./src/app/utils/cells/getCellByCoords.tsx",
+    "./src/app/utils/winChecks/straightWinCheck.tsx",
+    "src/app/utils/winChecks/diagonalWinCheck.tsx",
+    "src/app/utils/winChecks/winGame.tsx",
+    "src/app/utils/gameControl/switchPlayer.tsx",
+    "src/app/utils/gameControl/isNewGame.tsx",
+    "src/app/utils/gameControl/checkForWin.tsx",
+    "src/app/commonTypes/Cell.tsx",
+    "src/app/constants.tsx"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.js",
+    "src/**/*.test.js",
+    "src/**/*.spec.jsx",
+    "src/**/*.test.jsx"
+  ],
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+}
