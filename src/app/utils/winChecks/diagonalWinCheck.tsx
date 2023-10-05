@@ -7,7 +7,8 @@ export function diagonalWinCheck(
   cells: Cell[],
   rows: number,
   columns: number,
-  player: number
+  player: number,
+  winRequiredCount: number
 ) {
   if (cell == null) return
 
@@ -49,7 +50,7 @@ export function diagonalWinCheck(
       forwardTickedCells.push([tempX, tempY])
   }
 
-  if (forwardTickedCells.length == columns) return true
+  if (forwardTickedCells.length == winRequiredCount) return true
 
   // Check backward slash shaped diagonal ( \ ) (2 Parts)
   // Check toward left and up ( \ ) (1/2)
@@ -80,7 +81,7 @@ export function diagonalWinCheck(
       backwardTickedCells.push([tempX, tempY])
   }
 
-  if (backwardTickedCells.length === columns) return true
+  if (backwardTickedCells.length === winRequiredCount) return true
 
   return false
 }

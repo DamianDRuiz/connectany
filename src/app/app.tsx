@@ -1,12 +1,17 @@
 import GameGrid from 'src/app/components/GameGrid/GameGrid'
 import { useCells } from 'src/app/hooks/useCells/useCells'
+import { DEFAULT_COLUMN_COUNT } from './constants'
 
 export function App() {
-  const rowAndColumnCount = 4
-  const { currentPlayer, cells, handleCellClick } = useCells(
-    rowAndColumnCount,
-    rowAndColumnCount
-  )
+  const {
+    currentPlayer,
+    cells,
+    winCount,
+    winCountInput,
+    handleCellClick,
+    handleWinCountInputChange,
+    handleWinCountConfirmationClick,
+  } = useCells()
 
   return (
     <>
@@ -23,10 +28,17 @@ export function App() {
           }
         `}
       </style>
-
+      <input
+        type="text"
+        id="winCount"
+        onChange={handleWinCountInputChange}
+        value={winCountInput}
+      />
+      <button onClick={handleWinCountConfirmationClick}>Confirm</button>
+      {winCount}
       <GameGrid
         cells={cells}
-        columnCount={rowAndColumnCount}
+        columnCount={DEFAULT_COLUMN_COUNT}
         handleCellClick={handleCellClick}
       />
       <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>

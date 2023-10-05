@@ -5,7 +5,8 @@ export function straightWinCheck(
   cells: Cell[],
   rows: number,
   columns: number,
-  player: number
+  player: number,
+  winRequiredCount: number
 ) {
   const cellRow = cells[cell].y
   const cellColumn = cells[cell].x
@@ -34,7 +35,10 @@ export function straightWinCheck(
     tickedVertical.push([cells[i].x, cells[i].y])
   }
 
-  if (tickedHorizontal.length == columns || tickedVertical.length == rows)
+  if (
+    tickedHorizontal.length == winRequiredCount ||
+    tickedVertical.length == winRequiredCount
+  )
     return true
 
   return false

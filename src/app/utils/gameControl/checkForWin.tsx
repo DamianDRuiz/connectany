@@ -8,13 +8,32 @@ export function checkForWin(
   cells: Cell[],
   columns: number,
   rows: number,
-  currentPlayer: number
+  currentPlayer: number,
+  winRequiredCount: number
 ) {
   const currentPlayerString = `Player ${currentPlayer}`
 
-  if (straightWinCheck(latestCellClicked, cells, columns, rows, currentPlayer))
+  if (
+    straightWinCheck(
+      latestCellClicked,
+      cells,
+      columns,
+      rows,
+      currentPlayer,
+      winRequiredCount
+    )
+  )
     winGame('Straight', currentPlayerString)
 
-  if (diagonalWinCheck(latestCellClicked, cells, rows, columns, currentPlayer))
+  if (
+    diagonalWinCheck(
+      latestCellClicked,
+      cells,
+      rows,
+      columns,
+      currentPlayer,
+      winRequiredCount
+    )
+  )
     winGame('Diagonal', currentPlayerString)
 }
