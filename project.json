@@ -9,7 +9,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/connectany"
+        "outputPath": "dist/connectany",
+        "base": "https://wordpressballer.com/connectany/"
       },
       "configurations": {
         "development": {
