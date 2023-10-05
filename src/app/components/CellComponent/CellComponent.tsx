@@ -15,7 +15,7 @@ export function CellComponent({
 }: CellProps) {
   return (
     <div
-      className="cell"
+      className={`cell ${ticked ? 'owned owned-by-' + owner : ''}`}
       id={`cell-${cellId}`}
       data-ticked={ticked}
       onClick={handleCellClick}

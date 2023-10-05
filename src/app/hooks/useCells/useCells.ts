@@ -78,14 +78,21 @@ export function useCells(rows: number, columns: number, wins: number) {
     if (isNewGame(latestCellClicked)) return
 
     setCurrentPlayer(switchPlayer(currentPlayer))
-    checkForWin(
-      latestCellClicked,
-      cells,
-      rows,
-      columns,
-      currentPlayer,
-      winCount
-    )
+
+    if (
+      checkForWin(
+        latestCellClicked,
+        cells,
+        rows,
+        columns,
+        currentPlayer,
+        winCount
+      )
+    ) {
+      setLatestCellClicked(null)
+      setCells(buildGridCells(customRows, customColumns))
+      setCurrentPlayer(1)
+    }
   }, [cells])
 
   useEffect(() => {

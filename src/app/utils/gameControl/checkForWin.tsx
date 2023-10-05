@@ -22,9 +22,10 @@ export function checkForWin(
       currentPlayer,
       winRequiredCount
     )
-  )
+  ) {
     winGame('Straight', currentPlayerString)
-
+    return true
+  }
   if (
     diagonalWinCheck(
       latestCellClicked,
@@ -34,6 +35,9 @@ export function checkForWin(
       currentPlayer,
       winRequiredCount
     )
-  )
+  ) {
     winGame('Diagonal', currentPlayerString)
+    return true
+  }
+  return false
 }
