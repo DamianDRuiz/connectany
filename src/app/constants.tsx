@@ -1,2 +1,3 @@
-export const DEFAULT_COLUMN_COUNT = 3
-export const DEFAULT_ROW_COUNT = 3
+export const DEFAULT_COLUMN_COUNT = 4
+export const DEFAULT_ROW_COUNT = 4
+export const DEFAULT_WIN_REQUIRED_COUNT = 4
