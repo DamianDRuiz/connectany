@@ -1,6 +1,8 @@
 import { ChangeEventHandler, useEffect, useState } from 'react'
 import { Cell } from 'src/app/commonTypes/Cell'
 import { buildGridCells } from 'src/app/utils/cells/buildGridCells'
+import getCellID from 'src/app/utils/cells/getCellID'
+import { getHighestEmptyCellInColumn } from 'src/app/utils/cells/getHighestEmptyCellInColumn'
 import { checkForWin } from 'src/app/utils/gameControl/checkForWin'
 import { isNewGame } from 'src/app/utils/gameControl/isNewGame'
 import { switchPlayer } from 'src/app/utils/gameControl/switchPlayer'
@@ -8,6 +10,7 @@ import { Player } from '../../commonTypes/Player'
 
 export function useCells(rows: number, columns: number, wins: number) {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(1)
+  const [gravityMode, setGravityMode] = useState<boolean>(true)
   const [winCount, setWinCount] = useState<number>(wins)
   const [customRows, setCustomRows] = useState<number>(rows)
   const [customColumns, setCustomColumns] = useState<number>(columns)
@@ -21,6 +24,10 @@ export function useCells(rows: number, columns: number, wins: number) {
   const [latestCellClicked, setLatestCellClicked] = useState<number | null>(
     null
   )
+
+  const handleGravityModeClick = () => {
+    setGravityMode((prev) => !prev)
+  }
 
   const handleCustomRowsInputChange: ChangeEventHandler = (e) => {
     const target = <HTMLInputElement>e.target
@@ -67,12 +74,16 @@ export function useCells(rows: number, columns: number, wins: number) {
     if (cells[cellId].ticked === true) return
 
     const newCells = [...cells]
+    let clickedCell = cells[cellId]
 
-    newCells[cellId].ticked = true
-    newCells[cellId].owner = currentPlayer
+    if (gravityMode)
+      clickedCell = getHighestEmptyCellInColumn(clickedCell, cells)
+
+    clickedCell.ticked = true
+    clickedCell.owner = currentPlayer
 
     setCells(newCells)
-    setLatestCellClicked(cellId)
+    setLatestCellClicked(getCellID(clickedCell, cells)) //here
   }
 
   useEffect(() => {
@@ -109,6 +120,8 @@ export function useCells(rows: number, columns: number, wins: number) {
     cells,
     winCount,
     winCountInput,
+    gravityMode,
+    handleGravityModeClick,
     handleCustomRowsInputChange,
     handleCustomRowsConfirmationClick,
     handleCustomColumnsInputChange,

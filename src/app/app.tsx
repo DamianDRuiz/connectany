@@ -18,6 +18,8 @@ export function App() {
     cells,
     winCount,
     winCountInput,
+    gravityMode,
+    handleGravityModeClick,
     handleCellClick,
     handleCustomColumnsInputChange,
     handleCustomColumnsConfirmationClick,
@@ -95,6 +97,10 @@ export function App() {
         handleSettingInputChange={handleCustomColumnsInputChange}
         handleSettingConfirmationClick={handleCustomColumnsConfirmationClick}
       />
+      <GravityMode
+        gravityMode={gravityMode}
+        handleGravityModeClick={handleGravityModeClick}
+      />
       <GameBar currentPlayer={currentPlayer} />
       <GameGrid
         cells={cells}
@@ -115,6 +121,32 @@ function GameBar({ currentPlayer }: GameBarProps) {
 
 interface GameBarProps {
   currentPlayer: Player
+}
+
+function GravityMode({
+  gravityMode,
+  handleGravityModeClick,
+}: GravityModeProps) {
+  return (
+    <>
+      <br />
+      <div className="settings">
+        <h2>Gravity Mode</h2>
+        <p>
+          Gravity Mode? (Set to <strong>{gravityMode ? 'on' : 'off'}</strong>)
+        </p>
+
+        <button onClick={handleGravityModeClick}>
+          {gravityMode ? 'Disable' : 'Enable'}
+        </button>
+      </div>
+    </>
+  )
+}
+
+interface GravityModeProps {
+  gravityMode: boolean
+  handleGravityModeClick: any
 }
 
 export default App
