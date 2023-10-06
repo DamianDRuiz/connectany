@@ -4,9 +4,10 @@ import { buildGridCells } from 'src/app/utils/cells/buildGridCells'
 import { checkForWin } from 'src/app/utils/gameControl/checkForWin'
 import { isNewGame } from 'src/app/utils/gameControl/isNewGame'
 import { switchPlayer } from 'src/app/utils/gameControl/switchPlayer'
+import { Player } from '../../commonTypes/Player'
 
 export function useCells(rows: number, columns: number, wins: number) {
-  const [currentPlayer, setCurrentPlayer] = useState<number>(1)
+  const [currentPlayer, setCurrentPlayer] = useState<Player>(1)
   const [winCount, setWinCount] = useState<number>(wins)
   const [customRows, setCustomRows] = useState<number>(rows)
   const [customColumns, setCustomColumns] = useState<number>(columns)
