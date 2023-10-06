@@ -1,5 +1,7 @@
 import GameGrid from 'src/app/components/GameGrid/GameGrid'
+import { Setting } from 'src/app/components/Setting/Setting'
 import { useCells } from 'src/app/hooks/useCells/useCells'
+import { Player } from './commonTypes/Player'
 import {
   DEFAULT_COLUMN_COUNT,
   DEFAULT_ROW_COUNT,
@@ -64,54 +66,36 @@ export function App() {
           }
         `}
       </style>
-      <div className="settings">
-        <h2>Winning</h2>
-        <p>
-          <label htmlFor="winCount">
-            How many to win? (Set to <strong>{winCount}</strong>) :
-          </label>
-        </p>
-        <input
-          type="text"
-          id="winCount"
-          onChange={handleWinCountInputChange}
-          value={winCountInput}
-        />
-        <button onClick={handleWinCountConfirmationClick}>Confirm</button>
-      </div>
-      <div className="settings">
-        <h2>Rows</h2>
-        <p>
-          <label htmlFor="rowCount">
-            How many rows? (Set to <strong>{customRows}</strong>) :
-          </label>
-        </p>
-        <input
-          type="text"
-          id="rowCount"
-          onChange={handleCustomRowsInputChange}
-          value={customRowsInput}
-        />
-        <button onClick={handleCustomRowsConfirmationClick}>Confirm</button>
-      </div>
-      <div className="settings">
-        <h2>Columns</h2>
-        <p>
-          <label htmlFor="columnCount">
-            How many columns? (Set to <strong>{customColumns}</strong>) :
-          </label>
-        </p>
-        <input
-          type="text"
-          id="columnCount"
-          onChange={handleCustomColumnsInputChange}
-          value={customColumnsInput}
-        />
-        <button onClick={handleCustomColumnsConfirmationClick}>Confirm</button>
-      </div>
-      <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>
-        <strong>Player {currentPlayer}'s turn</strong>
-      </p>
+
+      <Setting
+        title="Winning"
+        label="How many to win?"
+        settingName={'winCount'}
+        settingValue={winCount}
+        settingValueInput={winCountInput}
+        handleSettingInputChange={handleWinCountInputChange}
+        handleSettingConfirmationClick={handleWinCountConfirmationClick}
+      />
+      <Setting
+        title="Rows"
+        label="How many rows?"
+        settingName="rowCount"
+        settingValue={customRows}
+        settingValueInput={customRowsInput}
+        handleSettingInputChange={handleCustomRowsInputChange}
+        handleSettingConfirmationClick={handleCustomRowsConfirmationClick}
+      />
+
+      <Setting
+        title="Columns"
+        label="How many columns? "
+        settingName="columnCount"
+        settingValue={customColumns}
+        settingValueInput={customColumnsInput}
+        handleSettingInputChange={handleCustomColumnsInputChange}
+        handleSettingConfirmationClick={handleCustomColumnsConfirmationClick}
+      />
+      <GameBar currentPlayer={currentPlayer} />
       <GameGrid
         cells={cells}
         columnCount={customColumns}
@@ -119,6 +103,18 @@ export function App() {
       />
     </>
   )
+}
+
+function GameBar({ currentPlayer }: GameBarProps) {
+  return (
+    <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>
+      <strong>Player {currentPlayer}'s turn</strong>
+    </p>
+  )
+}
+
+interface GameBarProps {
+  currentPlayer: Player
 }
 
 export default App
