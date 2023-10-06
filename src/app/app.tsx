@@ -109,14 +109,14 @@ export function App() {
         />
         <button onClick={handleCustomColumnsConfirmationClick}>Confirm</button>
       </div>
+      <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>
+        <strong>Player {currentPlayer}'s turn</strong>
+      </p>
       <GameGrid
         cells={cells}
         columnCount={customColumns}
         handleCellClick={handleCellClick}
       />
-      <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>
-        Player {currentPlayer}'s turn
-      </p>
     </>
   )
 }
