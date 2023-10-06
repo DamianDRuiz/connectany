@@ -10,7 +10,6 @@ export function getHighestEmptyCellInColumn(
 
   for (let i = initialIndex; i > -1; i--) {
     const currentCell = cellsInColumn[i]
-    console.log(currentCell)
     if (!currentCell.ticked) return currentCell
   }
 
