@@ -19,7 +19,9 @@
     "src/app/commonTypes/Cell.tsx",
     "src/app/constants.tsx",
     "src/app/utils/cells/cellIsOwnedByPlayer.tsx",
-    "./src/app/utils/winChecks/enoughTickedInARow.tsx"
+    "./src/app/utils/winChecks/enoughTickedInARow.tsx",
+    "src/app/commonTypes/Player.ts",
+    "./src/app/Setting.tsx"
   ],
   "exclude": [
     "src/**/*.spec.ts",
