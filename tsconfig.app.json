@@ -18,7 +18,8 @@
     "src/app/utils/gameControl/checkForWin.tsx",
     "src/app/commonTypes/Cell.tsx",
     "src/app/constants.tsx",
-    "src/app/utils/cells/cellIsOwnedByPlayer.tsx"
+    "src/app/utils/cells/cellIsOwnedByPlayer.tsx",
+    "./src/app/utils/winChecks/enoughTickedInARow.tsx"
   ],
   "exclude": [
     "src/**/*.spec.ts",
