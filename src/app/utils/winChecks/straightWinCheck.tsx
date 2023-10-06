@@ -1,4 +1,5 @@
 import { Cell } from 'src/app/commonTypes/Cell'
+import { enoughTickedInARow } from './enoughTickedInARow'
 
 export function straightWinCheck(
   cell: number | string | any,
@@ -21,7 +22,7 @@ export function straightWinCheck(
     )
       continue
 
-    tickedHorizontal.push([cells[i].x, cells[i].y])
+    tickedHorizontal.push(cells[i])
   }
 
   for (let i = 0; i < cells.length; i++) {
@@ -32,12 +33,12 @@ export function straightWinCheck(
     )
       continue
 
-    tickedVertical.push([cells[i].x, cells[i].y])
+    tickedVertical.push(cells[i])
   }
 
   if (
-    tickedHorizontal.length == winRequiredCount ||
-    tickedVertical.length == winRequiredCount
+    enoughTickedInARow(tickedVertical, 'vertical', player, winRequiredCount) ||
+    enoughTickedInARow(tickedHorizontal, 'horizontal', player, winRequiredCount)
   )
     return true
 
