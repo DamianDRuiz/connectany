@@ -34,6 +34,7 @@ export function diagonalWinCheck(
 
     if (cellIsOwnedByPlayer(adjacentCell, player))
       forwardTickedCells.push([tempX, tempY])
+    else break
   }
 
   // Check toward left and down ( / ) (2/2)
@@ -48,6 +49,7 @@ export function diagonalWinCheck(
 
     if (cellIsOwnedByPlayer(adjacentCell, player))
       forwardTickedCells.push([tempX, tempY])
+    else break
   }
 
   if (forwardTickedCells.length == winRequiredCount) return true
@@ -65,6 +67,7 @@ export function diagonalWinCheck(
 
     if (cellIsOwnedByPlayer(adjacentCell, player))
       backwardTickedCells.push([tempX, tempY])
+    else break
   }
 
   // Check toward right and down ( \ ) (2/2)
@@ -79,6 +82,7 @@ export function diagonalWinCheck(
 
     if (cellIsOwnedByPlayer(adjacentCell, player))
       backwardTickedCells.push([tempX, tempY])
+    else break
   }
 
   if (backwardTickedCells.length === winRequiredCount) return true
