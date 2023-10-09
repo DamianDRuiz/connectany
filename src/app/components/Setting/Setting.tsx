@@ -26,7 +26,7 @@ export function Setting({
   )
 }
 
-interface SettingProps {
+export interface SettingProps {
   title: string
   label: string
   settingName: string
