@@ -21,7 +21,9 @@
     "src/app/utils/cells/cellIsOwnedByPlayer.tsx",
     "./src/app/utils/winChecks/enoughTickedInARow.tsx",
     "src/app/commonTypes/Player.ts",
-    "./src/app/styles.tsx"
+    "./src/app/styles.tsx",
+    "src/app/components/GameBar/GameBar.tsx",
+    "src/app/components/GlobalStyle/GlobalStyles.tsx"
   ],
   "exclude": [
     "src/**/*.spec.ts",
