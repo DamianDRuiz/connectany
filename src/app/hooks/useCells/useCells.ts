@@ -8,8 +8,10 @@ import { checkForWin } from 'src/app/utils/gameControl/checkForWin'
 import { isNewGame } from 'src/app/utils/gameControl/isNewGame'
 import { switchPlayer } from 'src/app/utils/gameControl/switchPlayer'
 import { Player } from '../../commonTypes/Player'
+
 export function useCells(rows: number, columns: number, wins: number) {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(1)
+  const [cells, setCells] = useState<Cell[]>(buildGridCells(rows, columns))
   const [gravityMode, setGravityMode] = useState<boolean>(true)
   const [winCount, setWinCount] = useState<number>(wins)
   const [customRows, setCustomRows] = useState<number>(rows)
@@ -19,11 +21,30 @@ export function useCells(rows: number, columns: number, wins: number) {
   const [customColumnsInput, setCustomColumnsInput] = useState<string | number>(
     columns
   )
-
-  const [cells, setCells] = useState<Cell[]>(buildGridCells(rows, columns))
   const [latestCellClicked, setLatestCellClicked] = useState<number | null>(
     null
   )
+
+  const manageGame = () => {
+    if (isNewGame(latestCellClicked)) return
+
+    setCurrentPlayer(switchPlayer(currentPlayer))
+
+    if (checkForWin(latestCellClicked, cells, currentPlayer, winCount)) {
+      toast(`Player ${currentPlayer} wins!`)
+      setLatestCellClicked(null)
+      setCells(buildGridCells(customRows, customColumns))
+      setCurrentPlayer(1)
+    }
+  }
+
+  const manageGrid = () => {
+    setCells(buildGridCells(customRows, customColumns))
+  }
+
+  useEffect(manageGame, [cells])
+
+  useEffect(manageGrid, [customRows, customColumns])
 
   const handleCellClick = (e: MouseEvent) => {
     const target = e.target as HTMLDivElement
@@ -42,23 +63,6 @@ export function useCells(rows: number, columns: number, wins: number) {
     setCells(newCells)
     setLatestCellClicked(getCellID(clickedCell, cells)) //here
   }
-
-  useEffect(() => {
-    if (isNewGame(latestCellClicked)) return
-
-    setCurrentPlayer(switchPlayer(currentPlayer))
-
-    if (checkForWin(latestCellClicked, cells, currentPlayer, winCount)) {
-      toast(`Player ${currentPlayer} wins!`)
-      setLatestCellClicked(null)
-      setCells(buildGridCells(customRows, customColumns))
-      setCurrentPlayer(1)
-    }
-  }, [cells])
-
-  useEffect(() => {
-    setCells(buildGridCells(customRows, customColumns))
-  }, [customRows, customColumns])
 
   const handleGravityModeClick = () => {
     setGravityMode((prev) => !prev)
