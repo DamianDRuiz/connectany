@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import GameGrid from 'src/app/components/GameGrid/GameGrid'
 import { Setting } from 'src/app/components/Setting/Setting'
 import { useCells } from 'src/app/hooks/useCells/useCells'
@@ -10,7 +12,6 @@ import {
   DEFAULT_WIN_REQUIRED_COUNT,
 } from './constants'
 import { styles } from './styles'
-
 export function App() {
   const {
     currentPlayer,
@@ -85,6 +86,18 @@ export function App() {
         cells={cells}
         columnCount={customColumns}
         handleCellClick={handleCellClick}
+      />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+        theme="light"
       />
     </>
   )

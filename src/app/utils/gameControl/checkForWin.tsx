@@ -1,7 +1,6 @@
 import { Cell } from 'src/app/commonTypes/Cell'
 import { diagonalWinCheck } from 'src/app/utils/winChecks/diagonalWinCheck'
 import { straightWinCheck } from 'src/app/utils/winChecks/straightWinCheck'
-import { winGame } from 'src/app/utils/winChecks/winGame'
 
 export function checkForWin(
   latestCellClicked: number | null,
@@ -11,8 +10,6 @@ export function checkForWin(
   currentPlayer: number,
   winRequiredCount: number
 ) {
-  const currentPlayerString = `Player ${currentPlayer}`
-
   if (
     straightWinCheck(
       latestCellClicked,
@@ -23,7 +20,6 @@ export function checkForWin(
       winRequiredCount
     )
   ) {
-    winGame('Straight', currentPlayerString)
     return true
   }
   if (
@@ -36,7 +32,6 @@ export function checkForWin(
       winRequiredCount
     )
   ) {
-    winGame('Diagonal', currentPlayerString)
     return true
   }
   return false
