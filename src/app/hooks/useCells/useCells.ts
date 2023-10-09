@@ -48,16 +48,7 @@ export function useCells(rows: number, columns: number, wins: number) {
 
     setCurrentPlayer(switchPlayer(currentPlayer))
 
-    if (
-      checkForWin(
-        latestCellClicked,
-        cells,
-        rows,
-        columns,
-        currentPlayer,
-        winCount
-      )
-    ) {
+    if (checkForWin(latestCellClicked, cells, currentPlayer, winCount)) {
       toast(`Player ${currentPlayer} wins!`)
       setLatestCellClicked(null)
       setCells(buildGridCells(customRows, customColumns))

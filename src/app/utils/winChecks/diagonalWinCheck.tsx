@@ -5,13 +5,14 @@ import { getCellByCoords } from 'src/app/utils/cells/getCellByCoords'
 export function diagonalWinCheck(
   cell: number | string | any,
   cells: Cell[],
-  rows: number,
-  columns: number,
   player: number,
   winRequiredCount: number
 ) {
   if (cell == null) return
 
+  const lastCell = cells[cells.length - 1]
+  const rows = lastCell.x
+  const columns = lastCell.y
   const cellX: number = cells[cell].x
   const cellY: number = cells[cell].y
   let forwardTickedCells: Coordinates[] = [[cellX, cellY]]

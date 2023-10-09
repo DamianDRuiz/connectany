@@ -4,8 +4,6 @@ import { enoughTickedInARow } from './enoughTickedInARow'
 export function straightWinCheck(
   cell: number | string | any,
   cells: Cell[],
-  rows: number,
-  columns: number,
   player: number,
   winRequiredCount: number
 ) {
