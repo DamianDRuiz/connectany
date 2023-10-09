@@ -7,26 +7,27 @@ import {
   DEFAULT_ROW_COUNT,
   DEFAULT_WIN_REQUIRED_COUNT,
 } from './constants'
+import { styles } from './styles'
 
 export function App() {
   const {
-    customRows,
-    customRowsInput,
-    customColumns,
-    customColumnsInput,
     currentPlayer,
     cells,
-    winCount,
-    winCountInput,
+    handleCellClick,
     gravityMode,
     handleGravityModeClick,
-    handleCellClick,
-    handleCustomColumnsInputChange,
-    handleCustomColumnsConfirmationClick,
-    handleCustomRowsInputChange,
-    handleCustomRowsConfirmationClick,
+    winCount,
+    winCountInput,
     handleWinCountInputChange,
     handleWinCountConfirmationClick,
+    customRows,
+    customRowsInput,
+    handleCustomRowsInputChange,
+    handleCustomRowsConfirmationClick,
+    customColumns,
+    customColumnsInput,
+    handleCustomColumnsInputChange,
+    handleCustomColumnsConfirmationClick,
   } = useCells(
     DEFAULT_ROW_COUNT,
     DEFAULT_COLUMN_COUNT,
@@ -35,40 +36,7 @@ export function App() {
 
   return (
     <>
-      <style>
-        {`
-          .gamegrid {
-            display: grid;
-            width: 600px;
-            height: 600px;
-          }
-
-          .cell {
-            border: 1px solid #000;
-          }
-
-          .cell .owned {
-            border-width: 3px;
-          }
-
-          .cell.owned-by-1 {background-color: blue;}
-          .cell.owned-by-2 {background-color: red;}
-
-          .settings {
-            margin-bottom: 20px;
-            margin-right: 10px;
-            border: 1px solid #000;
-            width: 250px;
-            padding: 10px;
-            display: inline-block;
-          }
-
-          .settings p {
-            margin-top: 0;
-          }
-        `}
-      </style>
-
+      <GlobalStyles styles={styles} />
       <Setting
         title="Winning"
         label="How many to win?"
@@ -147,6 +115,14 @@ function GravityMode({
 interface GravityModeProps {
   gravityMode: boolean
   handleGravityModeClick: any
+}
+
+function GlobalStyles({ styles }: GlobalStylesProps) {
+  return <style>{styles}</style>
+}
+
+interface GlobalStylesProps {
+  styles: string
 }
 
 export default App
