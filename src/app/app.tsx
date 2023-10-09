@@ -1,7 +1,9 @@
 import GameGrid from 'src/app/components/GameGrid/GameGrid'
 import { Setting } from 'src/app/components/Setting/Setting'
 import { useCells } from 'src/app/hooks/useCells/useCells'
-import { Player } from './commonTypes/Player'
+import { GameBar } from './components/GameBar/GameBar'
+import { GlobalStyles } from './components/GlobalStyle/GlobalStyles'
+import SettingToggle from './components/SettingToggle/SettingToggle'
 import {
   DEFAULT_COLUMN_COUNT,
   DEFAULT_ROW_COUNT,
@@ -34,41 +36,50 @@ export function App() {
     DEFAULT_WIN_REQUIRED_COUNT
   )
 
+  const settings = {
+    winning: {
+      title: 'Winning',
+      label: 'How many to win?',
+      settingName: 'winCount',
+      settingValue: winCount,
+      settingValueInput: winCountInput,
+      handleSettingInputChange: handleWinCountInputChange,
+      handleSettingConfirmationClick: handleWinCountConfirmationClick,
+    },
+    rows: {
+      title: 'Rows',
+      label: 'How many rows?',
+      settingName: 'rowCount',
+      settingValue: customRows,
+      settingValueInput: customRowsInput,
+      handleSettingInputChange: handleCustomRowsInputChange,
+      handleSettingConfirmationClick: handleCustomRowsConfirmationClick,
+    },
+    columns: {
+      title: 'Columns',
+      label: 'How many columns? ',
+      settingName: 'columnCount',
+      settingValue: customColumns,
+      settingValueInput: customColumnsInput,
+      handleSettingInputChange: handleCustomColumnsInputChange,
+      handleSettingConfirmationClick: handleCustomColumnsConfirmationClick,
+    },
+    gravityMode: {
+      title: 'Gravity Mode',
+      label: 'Gravity Mode?',
+      settingName: 'gravityMode',
+      settingValue: gravityMode,
+      handleClick: handleGravityModeClick,
+    },
+  }
+
   return (
     <>
       <GlobalStyles styles={styles} />
-      <Setting
-        title="Winning"
-        label="How many to win?"
-        settingName={'winCount'}
-        settingValue={winCount}
-        settingValueInput={winCountInput}
-        handleSettingInputChange={handleWinCountInputChange}
-        handleSettingConfirmationClick={handleWinCountConfirmationClick}
-      />
-      <Setting
-        title="Rows"
-        label="How many rows?"
-        settingName="rowCount"
-        settingValue={customRows}
-        settingValueInput={customRowsInput}
-        handleSettingInputChange={handleCustomRowsInputChange}
-        handleSettingConfirmationClick={handleCustomRowsConfirmationClick}
-      />
-
-      <Setting
-        title="Columns"
-        label="How many columns? "
-        settingName="columnCount"
-        settingValue={customColumns}
-        settingValueInput={customColumnsInput}
-        handleSettingInputChange={handleCustomColumnsInputChange}
-        handleSettingConfirmationClick={handleCustomColumnsConfirmationClick}
-      />
-      <GravityMode
-        gravityMode={gravityMode}
-        handleGravityModeClick={handleGravityModeClick}
-      />
+      <Setting {...settings.winning} />
+      <Setting {...settings.rows} />
+      <Setting {...settings.columns} />
+      <SettingToggle {...settings.gravityMode} />
       <GameBar currentPlayer={currentPlayer} />
       <GameGrid
         cells={cells}
@@ -77,52 +88,6 @@ export function App() {
       />
     </>
   )
-}
-
-function GameBar({ currentPlayer }: GameBarProps) {
-  return (
-    <p style={{ color: currentPlayer === 1 ? 'blue' : 'red' }}>
-      <strong>Player {currentPlayer}'s turn</strong>
-    </p>
-  )
-}
-
-interface GameBarProps {
-  currentPlayer: Player
-}
-
-function GravityMode({
-  gravityMode,
-  handleGravityModeClick,
-}: GravityModeProps) {
-  return (
-    <>
-      <br />
-      <div className="settings">
-        <h2>Gravity Mode</h2>
-        <p>
-          Gravity Mode? (Set to <strong>{gravityMode ? 'on' : 'off'}</strong>)
-        </p>
-
-        <button onClick={handleGravityModeClick}>
-          {gravityMode ? 'Disable' : 'Enable'}
-        </button>
-      </div>
-    </>
-  )
-}
-
-interface GravityModeProps {
-  gravityMode: boolean
-  handleGravityModeClick: any
-}
-
-function GlobalStyles({ styles }: GlobalStylesProps) {
-  return <style>{styles}</style>
-}
-
-interface GlobalStylesProps {
-  styles: string
 }
 
 export default App
