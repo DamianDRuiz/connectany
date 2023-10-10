@@ -1,6 +1,6 @@
 import { Cell } from 'src/app/commonTypes/Cell'
 
-export function enoughTickedInARow(
+export function isEnoughTickedInARow(
   tickedCells: Cell[],
   direction: 'vertical' | 'horizontal',
   player: number,

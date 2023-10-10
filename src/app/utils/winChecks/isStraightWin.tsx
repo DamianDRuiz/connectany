@@ -1,5 +1,5 @@
 import { Cell } from 'src/app/commonTypes/Cell'
-import { enoughTickedInARow } from '../gameControl/enoughTickedInARow'
+import { isEnoughTickedInARow } from '../gameControl/isEnoughTickedInARow'
 
 export function isStraightWin(
   cell: number | string | any,
@@ -35,8 +35,18 @@ export function isStraightWin(
   }
 
   if (
-    enoughTickedInARow(tickedVertical, 'vertical', player, winRequiredCount) ||
-    enoughTickedInARow(tickedHorizontal, 'horizontal', player, winRequiredCount)
+    isEnoughTickedInARow(
+      tickedVertical,
+      'vertical',
+      player,
+      winRequiredCount
+    ) ||
+    isEnoughTickedInARow(
+      tickedHorizontal,
+      'horizontal',
+      player,
+      winRequiredCount
+    )
   )
     return true
 

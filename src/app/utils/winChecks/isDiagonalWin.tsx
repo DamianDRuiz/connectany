@@ -1,6 +1,6 @@
 import { Cell } from 'src/app/commonTypes/Cell'
-import { cellIsOwnedByPlayer } from 'src/app/utils/cells/cellIsOwnedByPlayer'
 import { getCellByCoords } from 'src/app/utils/cells/getCellByCoords'
+import { isCellOwnedByPlayer } from 'src/app/utils/cells/isCellOwnedByPlayer'
 
 export function isDiagonalWin(
   cell: number | string | any,
@@ -33,7 +33,7 @@ export function isDiagonalWin(
     tempY--
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (cellIsOwnedByPlayer(adjacentCell, player))
+    if (isCellOwnedByPlayer(adjacentCell, player))
       forwardTickedCells.push([tempX, tempY])
     else break
   }
@@ -48,7 +48,7 @@ export function isDiagonalWin(
     tempY++
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (cellIsOwnedByPlayer(adjacentCell, player))
+    if (isCellOwnedByPlayer(adjacentCell, player))
       forwardTickedCells.push([tempX, tempY])
     else break
   }
@@ -66,7 +66,7 @@ export function isDiagonalWin(
     tempY--
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (cellIsOwnedByPlayer(adjacentCell, player))
+    if (isCellOwnedByPlayer(adjacentCell, player))
       backwardTickedCells.push([tempX, tempY])
     else break
   }
@@ -81,7 +81,7 @@ export function isDiagonalWin(
     tempY++
     adjacentCell = getCellByCoords(tempX, tempY, cells)
 
-    if (cellIsOwnedByPlayer(adjacentCell, player))
+    if (isCellOwnedByPlayer(adjacentCell, player))
       backwardTickedCells.push([tempX, tempY])
     else break
   }
