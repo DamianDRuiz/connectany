@@ -12,7 +12,7 @@ import { Player } from '../../commonTypes/Player'
 export function useCells(rows: number, columns: number, wins: number) {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(1)
   const [cells, setCells] = useState<Cell[]>(buildGridCells(rows, columns))
-  const [gravityMode, setGravityMode] = useState<boolean>(true)
+  const [gravityMode, setGravityMode] = useState<boolean>(false)
   const [winCount, setWinCount] = useState<number>(wins)
   const [customRows, setCustomRows] = useState<number>(rows)
   const [customColumns, setCustomColumns] = useState<number>(columns)
@@ -108,6 +108,7 @@ export function useCells(rows: number, columns: number, wins: number) {
 
   return {
     currentPlayer,
+    latestCellClicked,
     cells,
     handleCellClick,
     gravityMode,
