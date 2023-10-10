@@ -103,7 +103,6 @@ export function getDiagonalRowBoundaries(cell: any, cells: Cell[]) {
   let backwardLowerBoundary
 
   // Backwards
-
   //To Top
   backwardUpperBoundary = calcBackwardUpperBoundary(cellX, cellY, maxX)
 
@@ -119,9 +118,7 @@ export function getDiagonalRowBoundaries(cell: any, cells: Cell[]) {
   backwardLowerBoundary = [xCount, yCount]
 
   // Forwards
-
   //to top
-
   xCount = cellX
   yCount = cellY
 
@@ -133,7 +130,7 @@ export function getDiagonalRowBoundaries(cell: any, cells: Cell[]) {
   forwardUpperBoundary = [xCount, yCount]
 
   //to bottom
-  forwardLowerBoundary = calcForwardLowerBoundary(xCount, yCount, maxY)
+  forwardLowerBoundary = calcForwardLowerBoundary(cellX, cellY, maxY)
 
   return {
     backwardUpperBoundary,
