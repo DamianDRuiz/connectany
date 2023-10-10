@@ -12,9 +12,11 @@ import {
   DEFAULT_WIN_REQUIRED_COUNT,
 } from './constants'
 import { styles } from './styles'
+import { getDiagonalRowBoundaries } from './utils/winChecks/isDiagonalWinExp'
 export function App() {
   const {
     currentPlayer,
+    latestCellClicked,
     cells,
     handleCellClick,
     gravityMode,
@@ -74,6 +76,12 @@ export function App() {
     },
   }
 
+  const handleTestBoundsClick = () => {
+    console.log(
+      getDiagonalRowBoundaries(cells[latestCellClicked as number], cells)
+    )
+  }
+
   return (
     <>
       <GlobalStyles styles={styles} />
@@ -82,6 +90,7 @@ export function App() {
       <Setting {...settings.columns} />
       <SettingToggle {...settings.gravityMode} />
       <GameBar currentPlayer={currentPlayer} />
+      <TestBounds onClick={handleTestBoundsClick} />
       <GameGrid
         cells={cells}
         columnCount={customColumns}
@@ -101,6 +110,14 @@ export function App() {
       />
     </>
   )
+}
+
+function TestBounds({ onClick }: TestBoundsProps) {
+  return <button onClick={onClick}>Test Bounds</button>
+}
+
+interface TestBoundsProps {
+  onClick: any
 }
 
 export default App
