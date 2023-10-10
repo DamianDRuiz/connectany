@@ -1,6 +1,6 @@
 import { Cell } from 'src/app/commonTypes/Cell'
-import { diagonalWinCheck as isDiagonalWin } from 'src/app/utils/winChecks/diagonalWinCheck'
-import { straightWinCheck as isStraightWin } from 'src/app/utils/winChecks/straightWinCheck'
+import { isDiagonalWin } from 'src/app/utils/winChecks/isDiagonalWin'
+import { isStraightWin } from 'src/app/utils/winChecks/isStraightWin'
 
 export function checkForWin(
   latestCellClicked: number | null,

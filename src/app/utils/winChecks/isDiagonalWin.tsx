@@ -2,7 +2,7 @@ import { Cell } from 'src/app/commonTypes/Cell'
 import { cellIsOwnedByPlayer } from 'src/app/utils/cells/cellIsOwnedByPlayer'
 import { getCellByCoords } from 'src/app/utils/cells/getCellByCoords'
 
-export function diagonalWinCheck(
+export function isDiagonalWin(
   cell: number | string | any,
   cells: Cell[],
   player: number,

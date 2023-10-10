@@ -1,7 +1,7 @@
 import { Cell } from 'src/app/commonTypes/Cell'
-import { enoughTickedInARow } from './enoughTickedInARow'
+import { enoughTickedInARow } from '../gameControl/enoughTickedInARow'
 
-export function straightWinCheck(
+export function isStraightWin(
   cell: number | string | any,
   cells: Cell[],
   player: number,
