@@ -163,19 +163,18 @@ function calcBackwardUpperBoundary(cellX: number, cellY: number, maxX: number) {
 
 function calcForwardLowerBoundary(cellX: number, cellY: number, maxY: number) {
   //if (cellY == maxY || cellX == 1) return [cellX, cellY]
+
   let x
   let y
   let distanceFromBottom = maxY - cellY
   let distanceFromLeft = cellX - 1
   let amountToFactor = 0
 
-  if (distanceFromBottom > distanceFromLeft) {
-    amountToFactor = distanceFromLeft
-  } else if (distanceFromBottom < distanceFromLeft) {
+  if (distanceFromBottom > distanceFromLeft) amountToFactor = distanceFromLeft
+  else if (distanceFromBottom < distanceFromLeft)
     amountToFactor = distanceFromBottom
-  } else if (distanceFromBottom == distanceFromLeft) {
+  else if (distanceFromBottom == distanceFromLeft)
     amountToFactor = distanceFromBottom
-  }
 
   x = cellX - amountToFactor
   y = cellY + amountToFactor
